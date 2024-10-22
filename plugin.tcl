@@ -1,12 +1,14 @@
 set plugin_name "history_exclusion_filter"
-if {![info exist ::settings(history_exclusion_length]} {
-    set ::settings(history_exclusion_length) 5
+
+if {![info exist ::skin(history_exclusion_length)]} {
+    set ::skin(history_exclusion_length) 8
 }
+
 
 namespace eval ::plugins::${plugin_name} {
 	variable author "Damian"
 	variable contact "via Diaspora"
-	variable version 1.1
+	variable version 1.2
 	variable description "Exclude profile types Cleaning, Calibration, Testing, Test, or any profile that runs for less than the time set in the history_exclusion_filter settings from saving history files and adding to the espresso count"
 
 
