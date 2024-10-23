@@ -1,14 +1,14 @@
 set plugin_name "history_exclusion_filter"
 
-if {![info exist ::skin(history_exclusion_length)]} {
-    set ::skin(history_exclusion_length) 8
+if {![info exist ::settings(history_exclusion_length)]} {
+    set ::settings(history_exclusion_length) 8
 }
 
 
 namespace eval ::plugins::${plugin_name} {
 	variable author "Damian"
 	variable contact "via Diaspora"
-	variable version 1.2
+	variable version 1.3
 	variable description "Exclude profile types Cleaning, Calibration, Testing, Test, or any profile that runs for less than the time set in the history_exclusion_filter settings from saving history files and adding to the espresso count"
 
 
@@ -34,15 +34,15 @@ namespace eval ::plugins::${plugin_name} {
         dui add canvas_item rect $page_name 0 0 2560 1600 -fill $background_colour -width 0
         dui add dtext $page_name 1280 240 -text [translate "History Exclusion Filter"] -font [dui font get $font_bold 28] -fill $text_colour -anchor "center" -justify "center"
 
-        dui add dtext $page_name 780 600 -text [translate "Minimum run time"] -font [dui font get $font_bold 22] -fill $text_colour -anchor w
+        dui add dtext $page_name 780 600 -text [translate "Minimum run time"] -font [dui font get $font 22] -fill $text_colour -anchor w
 
-        dui add variable $page_name 1440 600 -fill $text_colour -font [dui font get $font 22] -anchor center -textvariable {[round_to_integer $::settings(history_exclusion_length)]s}
+        dui add variable $page_name 1500 600 -fill $text_colour -font [dui font get $font 22] -anchor center -textvariable {[round_to_integer $::settings(history_exclusion_length)]s}
 
-        dui add dbutton $page_name 1270 550 \
+        dui add dbutton $page_name 1330 550 \
             -bwidth 100 -bheight 100 \
             -label {-} -label_font [dui font get $font 24] -label_fill $text_colour -label_pos {0.5 0.5} \
             -command {::plugins::history_exclusion_filter::adjust_time -1}
-        dui add dbutton $page_name 1510 550 \
+        dui add dbutton $page_name 1570 550 \
             -bwidth 100 -bheight 100 \
             -label {+} -label_font [dui font get $font 24] -label_fill $text_colour -label_pos {0.5 0.5} \
             -command {::plugins::history_exclusion_filter::adjust_time 1}
