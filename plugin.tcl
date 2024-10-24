@@ -8,7 +8,7 @@ if {![info exist ::settings(history_exclusion_length)]} {
 namespace eval ::plugins::${plugin_name} {
 	variable author "Damian"
 	variable contact "via Diaspora"
-	variable version 1.3
+	variable version 1.4
 	variable description "Exclude profile types Cleaning, Calibration, Testing, Test, or any profile that runs for less than the time set in the history_exclusion_filter settings from saving history files and adding to the espresso count"
 
 
@@ -81,7 +81,7 @@ namespace eval ::plugins::${plugin_name} {
     proc adjust_time {value} {
         set ::settings(history_exclusion_length) [round_to_one_digits [expr $::settings(history_exclusion_length) + $value]]
         if {$::settings(history_exclusion_length) < 1} {set ::settings(history_exclusion_length) 1}
-        if {$::settings(history_exclusion_length) > 10} {set ::settings(history_exclusion_length) 10}
+        if {$::settings(history_exclusion_length) > 20} {set ::settings(history_exclusion_length) 20}
 
     }
 
